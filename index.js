@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send({ subscribe: 'to pewds' });
+  res.send({ subscribe: 'Pewdiepie' });
 });
 
 const PORT = process.env.PORT || 5000;
