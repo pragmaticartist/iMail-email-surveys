@@ -9,6 +9,10 @@ import App from './components/App';
 import reducer from './reducers';
 import rootSaga from './sagas';
 
+// Development only axios helpers
+import axios from 'axios';
+window.axios = axios;
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducer, {}, applyMiddleware(sagaMiddleware));
