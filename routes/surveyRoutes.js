@@ -66,6 +66,7 @@ module.exports = app => {
     console.log('Posting to /surveys');
 
     // call function that removes duplicate emails
+    // or add form validation on client
 
     const survey = new Survey({
       title,
@@ -78,18 +79,15 @@ module.exports = app => {
       dateSent: Date.now(),
     });
 
-    console.log('Before Mailer');
     const mailer = new Mailer(survey, surveyTemplate(survey));
 
     try {
       await mailer.send();
-      console.log('I made it past send()');
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();
 
       res.send(user);
-      console.log('Yo, Im HERE AT THE END!');
     } catch (err) {
       res.status(422).send(err);
     }

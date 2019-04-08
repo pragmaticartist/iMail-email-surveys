@@ -12,11 +12,9 @@ class Mailer extends helper.Mail {
     this.body = new helper.Content('text/html', content);
     this.recipients = this.formatAddresses(recipients);
 
-    console.log('MAILER: before addContent');
     this.addContent(this.body);
     this.addClickTracking();
     this.addRecipients();
-    console.log('MAILER: end of constructor');
   }
 
   formatAddresses(recipients) {
@@ -49,7 +47,6 @@ class Mailer extends helper.Mail {
       body: this.toJSON(),
     });
 
-    console.log('MAILER: before sgApi.API()');
     const response = await this.sgApi.API(request); // <--- Locks up if duplicate email
     return response;
   }
